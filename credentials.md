@@ -1,0 +1,2 @@
+user --> administrator
+pass --> administrator

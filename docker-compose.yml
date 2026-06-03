@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.6
+    container_name: ca_db
+    restart: always
+    ports:
+      - "3306:3306" 
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_seguro
+      MYSQL_DATABASE: collectiveaccess
+      MYSQL_USER: ca_user
+      MYSQL_PASSWORD: ca_password_segura
+    volumes:
+      - ca_db_data:/var/lib/mysql
+
+  providence:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: ca_backend
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      # 1. ALMACENAMIENTO: Donde CA guarda y organiza las imágenes ya procesadas
+      - "C:\\Users\\JAN\\Desktop\\CA_IMAGENES_BACKEND:/var/www/html/media"
+      
+      # 2. IMPORTACIÓN: La bandeja de entrada donde tú dejas tus fotos para el importador
+      - "C:\\Users\\JAN\\Desktop\\CA_IMPORT_MEDIOS:/var/www/html/import"
+    depends_on:
+      - db
+
+volumes:
+  ca_db_data:
