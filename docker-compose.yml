@@ -22,13 +22,13 @@ services:
     container_name: ca_backend
     restart: always
     ports:
-      - "80:80"
+      - "3510:80"
     volumes:
-      # 1. ALMACENAMIENTO: Donde CA guarda y organiza las imágenes ya procesadas
-      - "C:\\Users\\JAN\\Desktop\\CA_IMAGENES_BACKEND:/var/www/html/media"
+      # FICAR RUTA DEL DIRECTORI QUE REBRA LES IMATGES PREPARADES
+      #- "C:\\Users\\user\\Desktop\\CA_IMAGENES_BACKEND:/var/www/html/media"
       
-      # 2. IMPORTACIÓN: La bandeja de entrada donde tú dejas tus fotos para el importador
-      - "C:\\Users\\JAN\\Desktop\\CA_IMPORT_MEDIOS:/var/www/html/import"
+      # FICAR RUTA DEL DIRECTORI ON ESTARAN LES FOTOS NORMALS
+      # - "C:\\Users\\user\\Desktop\\CA_IMPORT_MEDIOS:/var/www/html/import"
     depends_on:
       - db
 
